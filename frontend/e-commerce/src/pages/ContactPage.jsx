@@ -9,7 +9,6 @@ const ContactPage = () => {
       <React.Fragment>
          <Header />
          <Contact />
-         <Policy />
          <Footer />
       </React.Fragment>
    )

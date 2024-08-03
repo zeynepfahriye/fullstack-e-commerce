@@ -21,7 +21,6 @@ const HomePage = () => {
          <Blog />
          <Brands />
          <CampaignSingle />
-         <Policy />
          <Footer />
       </>
 

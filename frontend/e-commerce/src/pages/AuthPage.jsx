@@ -9,7 +9,7 @@ const AuthPage = () => {
     <React.Fragment>
       <Header/>
       <Auth/>
-      <Policy />
+
       <Footer/>
     </React.Fragment>
   )
