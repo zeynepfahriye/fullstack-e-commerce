@@ -10,12 +10,13 @@ import Blog from './components/Blogs/Blog'
 import Brands from './components/Brands/Brands';
 import CampaignSingle from './components/CampaignSingle/CampaignSingle'
 import HomePage from './pages/HomePage'
+import ContactPage from './pages/ContactPage'
 
 function App() {
 
   return (
     <>
-      <HomePage />
+      <ContactPage />
     </>
   )
 }
