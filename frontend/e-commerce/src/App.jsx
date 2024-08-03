@@ -2,12 +2,13 @@
 import './App.css'
 
 import AuthPage from './pages/AuthPage'
+import CartPage from './pages/CartPage'
 
 function App() {
 
   return (
     <>
-      <AuthPage />
+      <CartPage />
     </>
   )
 }
