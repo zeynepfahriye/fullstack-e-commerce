@@ -6,12 +6,13 @@ import AuthPage from './pages/AuthPage'
 import BlogDetailsPage from './pages/BlogDetailsPage'
 import BlogPage from './pages/BlogPage'
 import CartPage from './pages/CartPage'
+import ProductsDetailPage from './pages/ProductsDetailPage';
 
 function App() {
 
   return (
     <>
-      <BlogDetailsPage />
+      <ProductsDetailPage />
     </>
   )
 }
