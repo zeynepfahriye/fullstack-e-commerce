@@ -43,21 +43,21 @@ const ReviewsForm = () => {
                </div>
             </div>
             <div className="comment-form-comment form-comment">
-               <label for="comment">
+               <label htmlFor="comment">
                   Your review
                   <span className="required">*</span>
                </label>
                <textarea id="comment" cols="50" rows="10"></textarea>
             </div>
             <div className="comment-form-author form-comment">
-               <label for="name">
+               <label htmlFor="name">
                   Name
                   <span className="required">*</span>
                </label>
                <input id="name" type="text" />
             </div>
             <div className="comment-form-email form-comment">
-               <label for="email">
+               <label htmlFor="email">
                   Email
                   <span className="required">*</span>
                </label>
@@ -65,7 +65,7 @@ const ReviewsForm = () => {
             </div>
             <div className="comment-form-cookies">
                <input id="cookies" type="checkbox" />
-               <label for="cookies">
+               <label htmlFor="cookies">
                   Save my name, email, and website in this browser for the next time I
                   comment.
                   <span className="required">*</span>

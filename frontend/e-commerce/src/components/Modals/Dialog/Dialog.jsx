@@ -1,10 +1,15 @@
 import React from 'react'
 import "./Dialog.css"
-const Dialog = ({isDialogShow,setIsDialogShow}) => {
+const Dialog = ({ isDialogShow, setIsDialogShow }) => {
+
+   const handleCloseDialog = (event) => {
+      const checked = event.target.checked;
+      localStorage.setItem("dialog", JSON.stringify(!checked))
+   };
    return (
       <div className={`modal-dialog ${isDialogShow ? "show" : ""}`}>
          <div className="modal-content">
-            <button className="modal-close" onClick={()=>setIsDialogShow(false)}>
+            <button className="modal-close" onClick={() => setIsDialogShow(false)}>
                <i className="bi bi-x"></i>
             </button>
             <div className="modal-image">
@@ -20,16 +25,16 @@ const Dialog = ({isDialogShow,setIsDialogShow}) => {
                   </p>
                   <form className="popup-form">
                      <input type="text" placeholder="Enter Email Address Here" />
-                        <button className="btn btn-primary">SUBSCRIBE</button>
-                        <label>
-                           <input type="checkbox" />
-                              <span>Don't show this popup again</span>
-                        </label>
+                     <button className="btn btn-primary">SUBSCRIBE</button>
+                     <label>
+                        <input type="checkbox" onChange={handleCloseDialog} />
+                        <span>Don't show this popup again</span>
+                     </label>
                   </form>
                </div>
             </div>
          </div>
-         <div className='modal-overlay' onClick={()=>setIsDialogShow(false)}></div>
+         <div className='modal-overlay' onClick={() => setIsDialogShow(false)}></div>
       </div>
    )
 }
