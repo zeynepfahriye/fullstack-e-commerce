@@ -3,22 +3,8 @@ import Slider from "react-slick";
 import ProductItem from './ProductItem'
 import ProductsData from "../../data.json"
 import "./Products.css"
+import { NextBtn, PrevButton } from '../Slider/SliderControlsSlick';
 
-function NextBtn({ onClick }) {
-   return (
-      <button className="glide__arrow glide__arrow--right" onClick={onClick}>
-         <i className="bi bi-chevron-right"></i>
-      </button>
-   )
-}
-
-function PrevButton({ onClick }) {
-   return (
-      <button className="glide__arrow glide__arrow--left" onClick={onClick} >
-         <i className="bi bi-chevron-left"></i>
-      </button>
-   )
-}
 function Products() {
 
    const [products] = useState(ProductsData)

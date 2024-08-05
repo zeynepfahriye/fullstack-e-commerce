@@ -2,24 +2,9 @@ import React, { useState } from 'react'
 import Slider from "react-slick";
 import productsData from "../../../data.json"
 import "./Gallery.css"
+import { NextBtn, PrevButton } from '../../Slider/SliderControlsSlick';
 
-function NextBtn({ onClick }) {
-   return (
-      <button className="glide__arrow glide__arrow--right" data-glide-dir=">" onClick={onClick} style={{zIndex:"2"}}>
-         <i className="bi bi-chevron-right"></i>
-      </button>
-   )
-}
-
-function PrevButton({ onClick }) {
-   return (
-      <button className="glide__arrow glide__arrow--left" data-glide-dir="<" onClick={onClick} style={{zIndex:"2"}}>
-         <i className="bi bi-chevron-left"></i>
-      </button>
-   )
-}
 const Gallery = () => {
-
    const [activeImg, setActiveImg] = useState(productsData[0].img.thumbs[0])
 
    const sliderSettings = {
