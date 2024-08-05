@@ -25,13 +25,13 @@ const Sliders = () => {
                </button>
             </div>
             <div className="slider-dots">
-               <button className={`slider-dot ${currentSlide === 0 ? "active" : ""}`}>
+               <button className={`slider-dot ${currentSlide === 0 ? "active" : ""}`} onClick={()=>setCurrentSlide(0)}>
                   <span></span>
                </button>
-               <button className={`slider-dot ${currentSlide === 1 ? "active" : ""}`}>
+               <button className={`slider-dot ${currentSlide === 1 ? "active" : ""}`} onClick={()=>setCurrentSlide(1)}>
                   <span></span>
                </button>
-               <button className={`slider-dot ${currentSlide === 2 ? "active" : ""}`}>
+               <button className={`slider-dot ${currentSlide === 2 ? "active" : ""}`} onClick={()=>setCurrentSlide(2)}>
                   <span></span>
                </button>
             </div>
