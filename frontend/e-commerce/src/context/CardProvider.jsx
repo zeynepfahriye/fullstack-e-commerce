@@ -1,4 +1,4 @@
-import { createContext, useState ,useEffect} from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const CardContext = createContext();
 
@@ -15,12 +15,21 @@ const CardProvider = ({ children }) => {
    const addToCart = (cartItem) => {
       setCartItems((prevCart) => [...prevCart, cartItem]);
    };
+
+   const removeFromCart = (itemId) => {
+      const filteredCartItems = cartItems.filter((cartItem) => {
+         return cartItem.id !== itemId;
+      });
+
+      setCartItems(filteredCartItems);
+   };
    console.log("card", cartItems)
    return (
       <CardContext.Provider
          value={{
             addToCart,
-            cartItems
+            cartItems,
+            removeFromCart
          }}
       >
          {children}

@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CardContext } from '../../context/CardProvider'
 
-const CartItem = () => {
+const CartItem = ({ cartItem }) => {
+   const {removeFromCart} = useContext(CardContext)
    return (
-      <tr class="cart-item">
+      <tr className="cart-item">
          <td></td>
-         <td class="cart-image">
-            <img src="img/products/product1/1.png" alt="" />
-            <i class="bi bi-x delete-cart" data-id="1"></i>
+         <td className="cart-image">
+            <img src={cartItem.img.singleImage} alt=""  />
+            <i className="bi bi-x delete-cart" onClick={()=>removeFromCart(cartItem.id)}></i>
          </td>
-         <td>Analogue Resin Strap</td>
-         <td>$108.00</td>
-         <td class="product-quantity">1</td>
-         <td class="product-subtotal">$108.00</td>
+         <td>{cartItem.name}</td>
+         <td>{cartItem.price.newPrice} $</td>
+         <td className="product-quantity">1</td>
+         <td className="product-subtotal">{cartItem.price.newPrice} $</td>
       </tr>
    )
 }
