@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./ProductsItem.css"
+import { CardContext } from '../../context/CardProvider';
 function ProductItem({ product }) {
-   const addToCart = (cartItem) => {
-      console.log(product)
-   }
+   const {addToCart} = useContext(CardContext)
 
    return (
       <div className="product-item glide__slide glide__slide--active">
          <div className="product-image">
             <a href="#">
-               <img src= {product.img.singleImage} alt="" className="img1" />
+               <img src={product.img.singleImage} alt="" className="img1" />
                <img src={product.img.thumbs[1]} alt="" className="img2" />
             </a>
          </div>
@@ -38,7 +37,7 @@ function ProductItem({ product }) {
             </div>
             <span className="product-discount">-{product.discount}%</span>
             <div className="product-links">
-               <button className="add-to-cart" >
+               <button className="add-to-cart" onClick={() => addToCart(product)}>
                   <i className="bi bi-basket-fill"></i>
                </button>
                <button>

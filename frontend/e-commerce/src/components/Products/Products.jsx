@@ -6,7 +6,6 @@ import "./Products.css"
 import { NextBtn, PrevButton } from '../Slider/SliderControlsSlick';
 
 function Products() {
-
    const [products] = useState(ProductsData)
 
    const sliderSettings = {

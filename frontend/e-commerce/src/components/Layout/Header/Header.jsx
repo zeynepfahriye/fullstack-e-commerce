@@ -1,5 +1,10 @@
+import { useContext } from "react"
 import "./Header.css"
+import { CardContext } from "../../../context/CardProvider"
 const Header = ({ setIsSearchShow }) => {
+
+   const { cartItems } = useContext(CardContext)
+   console.log("aaaa",cartItems)
    return (
       <header>
          <div className="global-notification">
@@ -186,7 +191,7 @@ const Header = ({ setIsSearchShow }) => {
                         <div className="header-cart">
                            <a href="cart.html" className="header-cart-link">
                               <i className="bi bi-bag"></i>
-                              <span className="header-cart-count">0</span>
+                              <span className="header-cart-count">{cartItems.length}</span>
                            </a>
                         </div>
                      </div>
