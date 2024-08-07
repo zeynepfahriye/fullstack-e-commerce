@@ -4,7 +4,7 @@ import { CardContext } from "../../../context/CardProvider"
 const Header = ({ setIsSearchShow }) => {
 
    const { cartItems } = useContext(CardContext)
-   console.log("aaaa",cartItems)
+
    return (
       <header>
          <div className="global-notification">
