@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import "./ProductsItem.css"
 import { CardContext } from '../../context/CardProvider';
+import { useNavigate } from 'react-router-dom';
 function ProductItem({ product }) {
    const { addToCart, cartItems } = useContext(CardContext)
    const filteredCart = cartItems.find(

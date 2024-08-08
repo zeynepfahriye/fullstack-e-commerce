@@ -24,7 +24,7 @@ const Header = ({ setIsSearchShow }) => {
                      <i className="bi bi-list" id="btn-menu"></i>
                   </div>
                   <div className="header-left">
-                     <a href="index.html" className="logo">LOGO</a>
+                     <Link to={"/"}>LOGO</Link>
                   </div>
                   <div className="header-center" id="sidebar">
                      <nav className="navigation">
