@@ -13,7 +13,11 @@ const CardProvider = ({ children }) => {
    }, [cartItems])
 
    const addToCart = (cartItem) => {
-      setCartItems((prevCart) => [...prevCart, cartItem]);
+      setCartItems((prevCart) => [...prevCart,
+      {
+         ...cartItem,
+         quantity: cartItem.quantity ? cartItem.quantity : 1
+      }]);
    };
 
    const removeFromCart = (itemId) => {
