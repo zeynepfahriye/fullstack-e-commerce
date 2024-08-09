@@ -53,6 +53,25 @@ router.put("/:categoryId", async (req, res) => {
       }
       const updatedCategory = await Category.findByIdAndUpdate(categoryId, updates, { new: true })
       res.status(200).json(updatedCategory)
-   } catch (error) { }
+   } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "server error" })
+   }
+})
+
+//category silme (delete)
+
+router.delete("./categoryId", async (req, res) => {
+   try {
+      const categoryId = req.params.categoryId
+      const deletedCategory = await Category.findByIdAndRemove(categoryId);
+      if (!deletedCategory) {
+         return res.status(404).json({ error: "category not found" })
+      }
+      res.status(200).json(deletedCategory)
+   } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "server error" })
+   }
 })
 module.exports = router;
