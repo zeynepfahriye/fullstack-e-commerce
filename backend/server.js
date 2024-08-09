@@ -15,6 +15,8 @@ const connect = async () => {
       throw error
    }
 }
+//middleware
+app.use(express.json());
 
 app.use("/api", mainRoute)
 
