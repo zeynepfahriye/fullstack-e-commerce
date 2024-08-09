@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Category = require("../models/Category.js")
+
+//yeni kategori oluşturma (create)
 router.post("/", async (req, res) => {
    try {
       const { name, img } = req.body;
-      const newCategory = new Category({name,img})
+      const newCategory = new Category({ name, img })
       await newCategory.save()
 
       res.status(201).json(newCategory)
@@ -12,9 +14,14 @@ router.post("/", async (req, res) => {
       console.log(error)
    }
 })
-
+//tüm kategorileri getirme
 router.get("/", async (req, res) => {
-   res.send("categori getir")
+   try {
+      const categories = await Category.find();
+      res.status(200).json(categories)
+   } catch (error) {
+      res.status(500).json({ error: "Server error" })
+   }
 })
 
 module.exports = router;
