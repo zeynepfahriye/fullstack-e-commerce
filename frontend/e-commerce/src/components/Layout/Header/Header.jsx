@@ -1,11 +1,13 @@
 import { useContext } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { CardContext } from "../../../context/CardProvider"
 import "./Header.css"
 const Header = ({ setIsSearchShow }) => {
 
    const { cartItems } = useContext(CardContext)
-   const {pathname} = useLocation()
+   const user = localStorage.getItem("user");
+   const navigate = useNavigate()
+   const { pathname } = useLocation()
    return (
       <header>
          <div className="global-notification">
@@ -165,7 +167,7 @@ const Header = ({ setIsSearchShow }) => {
                               </div>
                            </li>
                            <li className="menu-list-item">
-                              <Link to ={"/blog"} className={`menu-link ${pathname === "/blog" && "active"}`}>
+                              <Link to={"/blog"} className={`menu-link ${pathname === "/blog" && "active"}`}>
                                  Blog
                               </Link>
                            </li>
@@ -186,15 +188,22 @@ const Header = ({ setIsSearchShow }) => {
                         <button className="search-button" onClick={() => setIsSearchShow(true)}>
                            <i className="bi bi-search"></i>
                         </button>
-                        <a href="#">
-                           <i className="bi bi-heart"></i>
-                        </a>
                         <div className="header-cart">
                            <Link to={"/cart"} className={`menu-link ${pathname === "/cart" && "active"}`}>
                               <i className="bi bi-bag"></i>
                               <span className="header-cart-count">{cartItems.length}</span>
                            </Link>
                         </div>
+                        {user && (
+                           <button className="search-button" onClick={() => {
+                              if (window.confirm("çıkış yapmak istediğinize emin misiniz ?")) {
+                                 { localStorage.removeItem("user") }
+                                 navigate("/auth")
+                              }
+                           }}>
+                              <i className="bi bi-box-arrow-right"></i>
+                           </button>
+                        )}
                      </div>
                   </div>
                </div>
