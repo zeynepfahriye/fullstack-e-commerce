@@ -7,7 +7,8 @@ import ContactPage from './pages/ContactPage';
 import CartPage from './pages/CartPage';
 import AuthPage from './pages/AuthPage';
 import ProductsDetailPage from './pages/ProductsDetailPage';
-import AdminUserPage from './pages/admin/AdminUserPage';
+import UserPage from './pages/Admin/UserPage';
+import CategoryPage from './pages/Admin/Categories/CategoryPage';
 import './App.css'
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
       <Route path='/product/:id' element={<ProductsDetailPage />} />
       <Route path='/blog/id' element={<BlogPage />} />
       <Route path='/admin/*'>
-        <Route path='users' element={<AdminUserPage />} />
+        <Route path='users' element={<UserPage/>} />
+        <Route path='categories' element={<CategoryPage/>} />
       </Route>
     </Routes>
   )
