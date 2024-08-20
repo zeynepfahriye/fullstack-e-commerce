@@ -23,6 +23,7 @@ const mongoose = require("mongoose");
        ref: "Category",
        required: true,
      },
+     description: { type: String, required: true },
    },
    { timestamps: true }
  );
