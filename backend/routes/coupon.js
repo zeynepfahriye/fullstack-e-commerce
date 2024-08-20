@@ -80,10 +80,10 @@ router.put("/:couponId", async (req, res) => {
 
 //coupon silme (delete)
 
-router.delete("./couponId", async (req, res) => {
+router.delete("/:couponId", async (req, res) => {
    try {
       const couponId = req.params.couponId
-      const deletedCoupon = await Coupon.findByIdAndRemove(couponId);
+      const deletedCoupon = await Coupon.findByIdAndDelete(couponId);
       if (!deletedCoupon) {
          return res.status(404).json({ error: "coupon not found" })
       }
