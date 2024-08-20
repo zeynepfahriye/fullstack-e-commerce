@@ -1,15 +1,13 @@
 import React from 'react'
 import './CategoriesItem.css'
-const CategoriesItem = () => {
+const CategoriesItem = ({category}) => {
    return (
-      <div>
-         <li className="category-item">
-            <a href="#">
-               <img src="img/categories/categories2.png" alt="" className="category-image" />
-               <span className="category-title"> Watches </span>
-            </a>
-         </li>
-      </div>
+      <li className="category-item">
+      <a href="#">
+        <img src={category.img} alt="" className="category-image" />
+        <span className="category-title">{category.name}</span>
+      </a>
+    </li>
    )
 }
 
