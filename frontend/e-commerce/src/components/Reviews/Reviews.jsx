@@ -5,13 +5,14 @@ import ReviewsForm from './ReviewsForm'
 const Reviews = ({ active, singleProduct }) => {
    return (
       <div className={`tab-panel-reviews ${active}`}>
-         {singleProduct.reviews.length < 0 ? (
+         {singleProduct.reviews.length > 0 ? (
             <>
                <h3>2 reviews for Basic Colored Sweatpants With Elastic Hems</h3>
                <div className="comments">
                   <ol className="comment-list">
-                     <ReviewsItem />
-                     <ReviewsItem />
+                     {singleProduct.reviews.map((item, index) => (
+                        <ReviewsItem key={index} item={item} />
+                     ))}
                   </ol>
                </div>
             </>
