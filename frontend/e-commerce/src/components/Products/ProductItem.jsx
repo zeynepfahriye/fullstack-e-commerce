@@ -1,18 +1,26 @@
 import React, { useContext } from 'react'
 import "./ProductsItem.css"
 import { CardContext } from '../../context/CardProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 function ProductItem({ product }) {
    const { addToCart, cartItems } = useContext(CardContext)
+   const navigation = useNavigate()
    const filteredCart = cartItems.find(
-      (cartItem) => cartItem.id === product.id
+      (cartItem) => cartItem._id === product._id
    );
+   const originalPrice = product.price.current;
+   const discountPercentage = product.price.discount;
+
+   // İndirimli fiyatı hesaplama
+   const discountedPrice = originalPrice - (originalPrice * discountPercentage) / 100;
+
    return (
       <div className="product-item glide__slide glide__slide--active">
          <div className="product-image">
             <a href="#">
-               <img src={product.img.singleImage} alt="" className="img1" />
-               <img src={product.img.thumbs[1]} alt="" className="img2" />
+               <img src={product.img[0]} alt="" className="img1" />
+               <img src={product.img[1]} alt="" className="img2" />
             </a>
          </div>
          <div className="product-info">
@@ -35,22 +43,28 @@ function ProductItem({ product }) {
                </li>
             </ul>
             <div className="product-prices">
-               <strong className="new-price"> ${product.price.newPrice.toFixed(2)}</strong>
-               <span className="old-price">${product.price.oldPrice.toFixed(2)}</span>
+               <strong className="new-price"> ${discountedPrice.toFixed(2)}</strong>
+               <span className="old-price">${originalPrice.toFixed(2)}</span>
             </div>
-            <span className="product-discount">-{product.discount}%</span>
+            <span className="product-discount">-{product.price.discount}%</span>
             <div className="product-links">
                <button className="add-to-cart"
+                  onClick={() =>
+                     addToCart({
+                        ...product,
+                        price: discountedPrice,
+                     })
+                  }
                   disabled={filteredCart}
-                  onClick={() => addToCart(product)}>
+               >
                   <i className="bi bi-basket-fill"></i>
                </button>
                <button>
                   <i className="bi bi-heart-fill"></i>
                </button>
-               <a href="#" className="product-link">
+               <Link to={`product/${product._id}`} className="product-link">
                   <i className="bi bi-eye-fill"></i>
-               </a>
+               </Link>
                <a href="#">
                   <i className="bi bi-share-fill"></i>
                </a>

@@ -4,8 +4,9 @@ import { CardContext } from '../../context/CardProvider'
 const CartTotals = () => {
    const { cartItems } = useContext(CardContext)
    const [fastCargo, setFestCargo] = useState(false)
+
    const cartItemTotals = cartItems.map((item) => {
-      const itemTotal = item.price.newPrice * item.quantity
+      const itemTotal = item.price * item.quantity
       return itemTotal
    })
 

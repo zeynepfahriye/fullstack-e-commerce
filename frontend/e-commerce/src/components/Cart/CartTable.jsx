@@ -4,7 +4,7 @@ import { CardContext } from '../../context/CardProvider'
 
 const CartTable = () => {
    const { cartItems } = useContext(CardContext)
-   console.log(cartItems)
+   
    return (
       <>
          <table className="shop-table">
@@ -20,7 +20,7 @@ const CartTable = () => {
             </thead>
             <tbody className="cart-wrapper">
                {cartItems.map((item) => (
-                  <CartItem cartItem={item} key={item.id} />
+                  <CartItem cartItem={item} key={item._id} />
                ))}
             </tbody>
          </table>
