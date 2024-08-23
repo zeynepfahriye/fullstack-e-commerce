@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import "./Info.css"
+import { CardContext } from '../../../context/CardProvider';
 const Info = ({ singleProduct }) => {
-   console.log("single->", singleProduct)
-   const [activeSize, setActiveSize] = useState(null);
-
-   const handleSizeClick = (size) => {
-      setActiveSize(size);
-   };
+   const quantityRef = useRef();
+   const { addToCart, cartItems } = useContext(CardContext);
    const originalPrice = singleProduct.price.current
-   const discountPercentage = singleProduct.price.discount 
+   const discountPercentage = singleProduct.price.discount
    const discountedPrice = originalPrice - (originalPrice * discountPercentage) / 100;
 
+   const filteredCard = cartItems.find(
+      (cartItem) => cartItem._id === singleProduct._id
+   );
    return (
       <div className="product-info">
          <h1 className="product-title">
@@ -27,8 +27,8 @@ const Info = ({ singleProduct }) => {
             <span>{singleProduct.reviews.length} reviews</span>
          </div>
          <div className="product-price">
-            <s className="old-price">{originalPrice} $</s>
-            <strong className="new-price">{discountedPrice} $</strong>
+            <s className="old-price">{originalPrice.toFixed(2)} $</s>
+            <strong className="new-price">{discountedPrice.toFixed(2)} $</strong>
          </div>
          <p className="product-description" dangerouslySetInnerHTML={{ __html: singleProduct.description }} />
          <form className="variations-form">
@@ -38,26 +38,18 @@ const Info = ({ singleProduct }) => {
                      <span>Color</span>
                   </div>
                   <div className="colors-wrapper">
-                     <div className="color-wrapper">
-                        <label className="blue-color">
-                           <input type="radio" name="product-color" />
-                        </label>
-                     </div>
-                     <div className="color-wrapper">
-                        <label className="red-color">
-                           <input type="radio" name="product-color" />
-                        </label>
-                     </div>
-                     <div className="color-wrapper active">
-                        <label className="green-color">
-                           <input type="radio" name="product-color" />
-                        </label>
-                     </div>
-                     <div className="color-wrapper">
-                        <label className="purple-color">
-                           <input type="radio" name="product-color" />
-                        </label>
-                     </div>
+                     {singleProduct.colors.map((color, index) => (
+                        <div className="color-wrapper" key={index}>
+                           <label
+                              style={{
+                                 backgroundColor: `#${color}`,
+                              }}
+                           >
+                              <input type="radio" name="product-color" />
+                           </label>
+                        </div>
+                     ))}
+
                   </div>
                </div>
                <div className="values">
@@ -65,20 +57,32 @@ const Info = ({ singleProduct }) => {
                      <span>Size</span>
                   </div>
                   <div className="values-list">
-                     {singleProduct.sizes.map((size) => (
-                        <span
-                           key={size}
-                           className={activeSize === size ? 'active' : ''}
-                           onClick={() => handleSizeClick(size)}
-                        >
-                           {size}
-                        </span>
+                     {singleProduct.sizes.map((size, index) => (
+                        <span key={index}>{size.toUpperCase()}</span>
                      ))}
                   </div>
                </div>
                <div className="cart-button">
-                  <input type="number" defaultValue="1" min="1" id="quantity" />
-                  <button className="btn btn-lg btn-primary" id="add-to-cart" type="button">Add to
+                  <input
+                     type="number"
+                     defaultValue="1"
+                     min="1"
+                     id="quantity"
+                     ref={quantityRef}
+                  />
+                  <button
+                     className="btn btn-lg btn-primary"
+                     id="add-to-cart"
+                     type="button"
+                     disabled={filteredCard}
+                     onClick={() =>
+                        addToCart({
+                           ...singleProduct,
+                           price: discountedPrice,
+                           quantity: parseInt(quantityRef.current.value),
+                        })
+                     }
+                  >Add to
                      cart</button>
                </div>
                <div className="product-extra-buttons">
