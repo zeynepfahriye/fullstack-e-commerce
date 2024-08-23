@@ -4,8 +4,11 @@ import productsData from "../../../data.json"
 import "./Gallery.css"
 import { NextBtn, PrevButton } from '../../Slider/SliderControlsSlick';
 
-const Gallery = () => {
-   const [activeImg, setActiveImg] = useState(productsData[0].img.thumbs[0])
+const Gallery = ({ singleProduct }) => {
+   const [activeImg, setActiveImg] = useState({
+      img: singleProduct.img[0],
+      imgIndex: 0
+   })
 
    const sliderSettings = {
       dots: false,
@@ -18,20 +21,25 @@ const Gallery = () => {
    return (
       <div className="product-gallery">
          <div className="single-image-wrapper">
-            <img src={activeImg} id="single-image" alt="" />
+            <img src={`${activeImg.img}`} id="single-image" alt="" />
          </div>
          <div className="product-thumb">
             <div className="glide__track" data-glide-el="track">
                <ol className="gallery-thumbs glide__slides">
                   <Slider {...sliderSettings}>
-                     {productsData[0].img.thumbs.map((itemImg, index) => (
+                     {singleProduct.img.map((itemImg, index) => (
                         <li
                            className="glide__slide glide__slide--active"
                            key={index}
-                           onClick={() => setActiveImg(itemImg)}
+                           onClick={() =>
+                              setActiveImg({
+                                 img: itemImg,
+                                 imgIndex: index,
+                              })
+                           }
                         >
                            <img
-                              src={itemImg}
+                              src={`${itemImg}`}
                               alt=""
                               className={`img-fluid ${itemImg === activeImg ? "active" : ""
                                  } `}

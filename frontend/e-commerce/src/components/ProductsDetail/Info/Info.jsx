@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Info.css"
-const Info = () => {
+const Info = ({ singleProduct }) => {
+   console.log("single->", singleProduct)
+   const [activeSize, setActiveSize] = useState(null);
+
+   const handleSizeClick = (size) => {
+      setActiveSize(size);
+   };
+   const originalPrice = singleProduct.price.current
+   const discountPercentage = singleProduct.price.discount 
+   const discountedPrice = originalPrice - (originalPrice * discountPercentage) / 100;
+
    return (
       <div className="product-info">
          <h1 className="product-title">
-            Ridley High Waist
+            {singleProduct.name}
          </h1>
          <div className="product-review">
             <ul className="product-star">
@@ -14,16 +24,13 @@ const Info = () => {
                <li><i className="bi bi-star-fill"></i></li>
                <li><i className="bi bi-star-half"></i></li>
             </ul>
-            <span>2 reviews</span>
+            <span>{singleProduct.reviews.length} reviews</span>
          </div>
          <div className="product-price">
-            <s className="old-price">$165</s>
-            <strong className="new-price">$100</strong>
+            <s className="old-price">{originalPrice} $</s>
+            <strong className="new-price">{discountedPrice} $</strong>
          </div>
-         <p className="product-description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-         </p>
+         <p className="product-description" dangerouslySetInnerHTML={{ __html: singleProduct.description }} />
          <form className="variations-form">
             <div className="variations">
                <div className="colors">
@@ -58,11 +65,15 @@ const Info = () => {
                      <span>Size</span>
                   </div>
                   <div className="values-list">
-                     <span className="active">XS</span>
-                     <span>S</span>
-                     <span>M</span>
-                     <span>L</span>
-                     <span>XL</span>
+                     {singleProduct.sizes.map((size) => (
+                        <span
+                           key={size}
+                           className={activeSize === size ? 'active' : ''}
+                           onClick={() => handleSizeClick(size)}
+                        >
+                           {size}
+                        </span>
+                     ))}
                   </div>
                </div>
                <div className="cart-button">
