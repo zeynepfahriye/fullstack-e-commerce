@@ -23,7 +23,7 @@ const ProductsDetailPage = () => {
       fetchSingleProduct();
    }, [apiUrl, productId]);
    console.log("info--->", singleProduct)
-   return singleProduct ? <ProductsDetail singleProduct={singleProduct}/> : <p>Ürün yükleniyor</p>
-}
+   return singleProduct ? <ProductsDetail singleProduct={singleProduct} setSingleProduct={setSingleProduct}/> : <p>Ürün yükleniyor</p>
+} 
 
 export default ProductsDetailPage
