@@ -22,7 +22,7 @@ const CardProvider = ({ children }) => {
 
    const removeFromCart = (itemId) => {
       const filteredCartItems = cartItems.filter((cartItem) => {
-         return cartItem.id !== itemId;
+         return cartItem._id !== itemId;
       });
 
       setCartItems(filteredCartItems);
