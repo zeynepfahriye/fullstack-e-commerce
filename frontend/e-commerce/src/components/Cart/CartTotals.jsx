@@ -7,15 +7,16 @@ const CartTotals = () => {
    const [fastCargoChecked, setFastCargoChecked] = useState(false);
    const [loading, setLoading] = useState(false);
    const { cartItems } = useContext(CardContext);
+   
    const stripePublicKey = import.meta.env.VITE_API_STRIPE_PUBLIC_KEY;
    const apiUrl = import.meta.env.VITE_API_BASE_URL;
+   
    const user = localStorage.getItem("user")
      ? JSON.parse(localStorage.getItem("user"))
      : null;
  
    const cartItemTotals = cartItems.map((item) => {
      const itemTotal = item.price * item.quantity;
- 
      return itemTotal;
    });
  
