@@ -59,20 +59,35 @@ router.put("/:productId", async (req, res) => {
 //product silme 
 router.delete("/:productId", async (req, res) => {
    try {
-       const productId = req.params.productId;
-       const deletedProduct = await Product.findByIdAndDelete(productId);
-       
-       if (!deletedProduct) {
-           return res.status(404).json({ error: "Product not found" });
-       }
-       
-       res.status(200).json(deletedProduct);
+      const productId = req.params.productId;
+      const deletedProduct = await Product.findByIdAndDelete(productId);
+
+      if (!deletedProduct) {
+         return res.status(404).json({ error: "Product not found" });
+      }
+
+      res.status(200).json(deletedProduct);
    } catch (error) {
-       console.log("Delete error:", error);
-       res.status(500).json({ error: "Server error" });
+      console.log("Delete error:", error);
+      res.status(500).json({ error: "Server error" });
    }
 });
 
+//ürünleri isme göre arama
+
+router.get("/search/:productName", async (req, res) => {
+   try {
+      const productName = req.params.productName
+      const products = await Product.find({
+         name: { $regex: productName ,$options:"i"}
+      })
+
+      res.status(200).json(products)
+   } catch (error) {
+      console.log(error)
+      res.status(500).json({error:"server error"})
+   }
+})
 
 
 module.exports = router;
