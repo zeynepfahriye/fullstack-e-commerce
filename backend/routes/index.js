@@ -14,5 +14,6 @@ router.use("/categories", categoryRoute);
 router.use("/auth", authRoute);
 router.use("/coupons", couponRoute)
 router.use("/users", userRoute)
+router.use("/products", productRoute);
 
 module.exports = router;
