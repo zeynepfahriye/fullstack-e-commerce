@@ -18,6 +18,7 @@ import CouponPage from './pages/Admin/Coupon/CouponPage';
 import CreateCouponPage from './pages/Admin/Coupon/CreateCouponPage';
 import UpdateCouponPage from './pages/Admin/Coupon/UpdateCouponPage';
 import './App.css'
+import Success from './pages/Success';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
       <Route path='/auth' element={<AuthPage />} />
       <Route path='/product/:id' element={<ProductsDetailPage />} />
       <Route path='/blog/id' element={<BlogPage />} />
+      <Route path='/success' element={<Success />} />
       <Route path='/admin/*'>
         <Route path='users' element={<UserPage/>} />
         <Route path='categories' element={<CategoryPage/>} />
