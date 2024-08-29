@@ -20,6 +20,7 @@ import UpdateCouponPage from './pages/Admin/Coupon/UpdateCouponPage';
 import './App.css'
 import Success from './pages/Success';
 import OrderPage from './pages/Admin/OrderPage';
+import DashboardPage from './pages/Admin/DashboardPage';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
       <Route path='/blog/id' element={<BlogPage />} />
       <Route path='/success' element={<Success />} />
       <Route path='/admin/*'>
+        <Route index element={<DashboardPage />} />
         <Route path='users' element={<UserPage />} />
         <Route path='categories' element={<CategoryPage />} />
         <Route path='categories/update/:id' element={<UpdateCategoryPage />} />
