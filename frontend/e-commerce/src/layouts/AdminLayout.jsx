@@ -127,6 +127,22 @@ const AdminLayout = ({ children }) => {
       },
     },
   ];
+
+  const getActiveKey = () => {
+    for (const item of menuItems) {
+      if (item.children) {
+        for (const child of item.children) {
+          if (child.path === window.location.pathname) {
+            return child.key;
+          }
+        }
+      } else {
+        if (item.path === window.location.pathname) {
+          return item.key;
+        }
+      }
+    }
+  };
   const userRole = getUserRole()
   if (userRole === "admin") {
     return (
@@ -143,6 +159,7 @@ const AdminLayout = ({ children }) => {
                 height: "100%",
               }}
               items={menuItems}
+              defaultSelectedKeys={[getActiveKey()]}
             />
           </Sider>
           <Layout>
