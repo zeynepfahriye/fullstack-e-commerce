@@ -33,7 +33,8 @@ const CardProvider = ({ children }) => {
          value={{
             addToCart,
             cartItems,
-            removeFromCart
+            removeFromCart,
+            setCartItems
          }}
       >
          {children}
