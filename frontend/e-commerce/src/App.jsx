@@ -19,6 +19,7 @@ import CreateCouponPage from './pages/Admin/Coupon/CreateCouponPage';
 import UpdateCouponPage from './pages/Admin/Coupon/UpdateCouponPage';
 import './App.css'
 import Success from './pages/Success';
+import OrderPage from './pages/Admin/OrderPage';
 
 function App() {
 
@@ -33,16 +34,17 @@ function App() {
       <Route path='/blog/id' element={<BlogPage />} />
       <Route path='/success' element={<Success />} />
       <Route path='/admin/*'>
-        <Route path='users' element={<UserPage/>} />
-        <Route path='categories' element={<CategoryPage/>} />
-        <Route path='categories/update/:id' element={<UpdateCategoryPage/>} />
-        <Route path='categories/create' element={<CreateCategoryPage/>} />
+        <Route path='users' element={<UserPage />} />
+        <Route path='categories' element={<CategoryPage />} />
+        <Route path='categories/update/:id' element={<UpdateCategoryPage />} />
+        <Route path='categories/create' element={<CreateCategoryPage />} />
         <Route path="products" element={<ProductPage />} />
         <Route path="products/create" element={<CreateProductPage />} />
         <Route path="products/update/:id" element={<UpdateProductPage />} />
         <Route path="coupons" element={<CouponPage />} />
         <Route path="coupons/create" element={<CreateCouponPage />} />
         <Route path="coupons/update/:id" element={<UpdateCouponPage />} />
+        <Route path='orders' index element={<OrderPage />} />
       </Route>
     </Routes>
   )
